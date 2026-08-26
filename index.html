@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
+        /* ===== 全局重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -28,16 +29,15 @@
         }
 
         .token-card {
-            max-width: 440px;
+            max-width: 480px;
             width: 100%;
             background: #ffffff;
             border-radius: 24px;
             padding: 36px 32px 28px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border: 1px solid #e6e9ed;
         }
 
-        /* === 顶部 === */
         .header {
             display: flex;
             align-items: center;
@@ -53,79 +53,80 @@
         }
 
         .brand-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #1a2332;
             letter-spacing: 0.5px;
             line-height: 1.2;
         }
-
         .brand-name .en {
             font-weight: 400;
-            font-size: 12px;
-            color: #8a96a8;
+            font-size: 13px;
+            color: #6b7a8a;
             letter-spacing: 0.5px;
             margin-left: 6px;
         }
 
         .brand-sub {
             font-size: 10px;
-            color: #aab2be;
+            color: #8a96a8;
             letter-spacing: 1.5px;
             margin-top: 2px;
             font-weight: 400;
-            text-transform: uppercase;
         }
 
         .badge-root {
             background: #1a2332;
             color: #ffffff;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 4px 16px;
-            border-radius: 40px;
-            letter-spacing: 1px;
-            white-space: nowrap;
-            border: 1px solid #e6e9ed;
-        }
-
-        /* === 令牌标题 === */
-        .token-title {
-            text-align: center;
-            margin: 0 0 14px 0;
-        }
-
-        .token-title .main {
             font-size: 12px;
-            font-weight: 500;
-            color: #6b7a8a;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .token-title .sub {
-            font-size: 10px;
-            color: #b0b8c4;
+            font-weight: 700;
+            padding: 5px 20px;
+            border-radius: 40px;
             letter-spacing: 1.5px;
-            margin-top: 1px;
-            font-weight: 300;
+            white-space: nowrap;
         }
 
-        /* === 持卡人信息 === */
+        .system-name {
+            text-align: center;
+            margin: 2px 0 14px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f2f4;
+        }
+        .system-name .main {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a2332;
+            letter-spacing: 1px;
+        }
+        .system-name .main .en {
+            font-weight: 400;
+            font-size: 12px;
+            color: #6b7a8a;
+            letter-spacing: 0.5px;
+            margin-left: 6px;
+        }
+        .system-name .sub {
+            font-size: 11px;
+            color: #8a96a8;
+            letter-spacing: 2px;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
         .holder {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 18px;
             background: #f7f9fc;
             border-radius: 18px;
-            padding: 14px 18px;
+            padding: 16px 20px;
             margin-bottom: 16px;
             border: 1px solid #eef0f2;
         }
 
         .holder-avatar {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             background: #e8ecf1;
             flex-shrink: 0;
@@ -133,7 +134,6 @@
             border: 2px solid #ffffff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
-
         .holder-avatar img {
             width: 100%;
             height: 100%;
@@ -145,50 +145,134 @@
             flex: 1;
             min-width: 0;
         }
-
         .holder-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #1a2332;
             letter-spacing: 0.3px;
         }
-
         .holder-name .en {
             font-weight: 400;
-            font-size: 13px;
+            font-size: 14px;
             color: #6b7a8a;
-            margin-left: 6px;
+            margin-left: 8px;
             letter-spacing: 0.3px;
         }
-
         .holder-role {
-            font-size: 11px;
+            font-size: 13px;
             color: #1a2332;
             font-weight: 500;
             letter-spacing: 0.5px;
-            margin-top: 1px;
+            margin-top: 2px;
         }
-
         .holder-role .en {
             color: #8a96a8;
             font-weight: 400;
             margin-left: 6px;
         }
-
         .holder-org {
-            font-size: 10px;
+            font-size: 11px;
             color: #8a96a8;
             letter-spacing: 0.3px;
-            margin-top: 0;
-            line-height: 1.3;
+            margin-top: 1px;
+            line-height: 1.4;
         }
-
         .holder-org .en {
-            color: #b0b8c4;
+            color: #aab2be;
             margin-left: 4px;
         }
 
-        /* === 卡面 === */
+        .permission-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px 0;
+            background: #f7f9fc;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 16px;
+            border: 1px solid #eef0f2;
+        }
+
+        .permission-bar .item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 4px 10px;
+            min-width: 0;
+            word-break: break-word;
+            padding: 4px 0;
+            border-bottom: 1px solid #eef0f2;
+        }
+        .permission-bar .item:last-child {
+            border-bottom: none;
+        }
+
+        .permission-bar .item .label {
+            color: #8a96a8;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            font-size: 11px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .permission-bar .item .label .en {
+            color: #b0b8c4;
+            margin-left: 4px;
+            font-size: 9px;
+        }
+
+        .permission-bar .item .value {
+            color: #1a2332;
+            font-weight: 500;
+            font-size: 14px;
+            flex: 1;
+            min-width: 60px;
+        }
+        .permission-bar .item .value .en {
+            color: #6b7a8a;
+            font-weight: 400;
+            margin-left: 4px;
+            font-size: 11px;
+        }
+        .permission-bar .item .value.valid {
+            color: #1a7a3a;
+        }
+
+        /* ===== Skeleton ===== */
+        .skeleton {
+            background: #e8ecf1;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .skeleton::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .card-front-skeleton {
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            background: #e8ecf1;
+            aspect-ratio: 16 / 10;
+        }
+        .card-front-skeleton .skeleton {
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+        }
+
         .card-front {
             border-radius: 14px;
             overflow: hidden;
@@ -200,7 +284,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .card-front img {
             width: 100%;
             height: 100%;
@@ -208,14 +291,6 @@
             display: block;
         }
 
-        .card-front .placeholder {
-            color: #b0b8c4;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            font-weight: 300;
-        }
-
-        /* === 条形码区 === */
         .barcode-section {
             display: flex;
             flex-direction: column;
@@ -229,7 +304,6 @@
             padding: 10px 16px 10px;
             border: 1px solid #eef0f2;
         }
-
         .barcode-item .label-row {
             display: flex;
             justify-content: space-between;
@@ -238,7 +312,6 @@
             flex-wrap: wrap;
             gap: 4px;
         }
-
         .barcode-item .label {
             font-size: 9px;
             font-weight: 600;
@@ -247,13 +320,11 @@
             text-transform: uppercase;
             line-height: 1.3;
         }
-
         .barcode-item .label .en {
             color: #aab2be;
             font-weight: 400;
             margin-left: 4px;
         }
-
         .barcode-item .value {
             font-size: 11px;
             font-weight: 500;
@@ -263,7 +334,6 @@
             word-break: break-all;
             text-align: right;
         }
-
         .barcode-item svg {
             width: 100%;
             height: auto;
@@ -273,74 +343,293 @@
             display: block;
         }
 
-        /* === 底部 === */
+        .barcode-skeleton {
+            width: 100%;
+            height: 32px;
+            background: #e8ecf1;
+            border-radius: 6px;
+        }
+        .barcode-skeleton .skeleton {
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+        }
+
+        .sensitive-placeholder {
+            color: #b0b8c4;
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 400;
+            background: #f0f2f5;
+            padding: 2px 12px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
         .footer {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 16px;
             padding-top: 12px;
             border-top: 1px solid #eef0f2;
+            flex-wrap: wrap;
+            gap: 4px;
         }
-
-        .footer p {
+        .footer .left {
             font-size: 9px;
-            color: #aab2be;
-            letter-spacing: 1.5px;
-            font-weight: 400;
-            line-height: 1.5;
+            color: #8a96a8;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
         }
-
-        .footer p .en {
-            color: #c8ced6;
+        .footer .left .en {
+            color: #b0b8c4;
             margin-left: 4px;
         }
-
-        .footer .serial-badge {
-            display: inline-block;
+        .footer .right {
+            text-align: right;
             font-size: 9px;
+            color: #8a96a8;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+        }
+        .footer .right .en {
             color: #b0b8c4;
-            letter-spacing: 1.5px;
-            font-weight: 300;
-            margin-top: 2px;
+            margin-left: 4px;
+        }
+        .footer .right .serial-badge {
+            display: block;
+            font-family: "Inter", monospace;
+            font-size: 9px;
+            color: #6b7a8a;
+            letter-spacing: 0.5px;
         }
 
-        /* === 打印按钮 === */
         .print-btn-wrapper {
             margin-top: 16px;
-            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        .print-btn {
+        .print-btn,
+        .verify-btn {
             background: #1a2332;
             color: #ffffff;
             border: none;
-            padding: 8px 40px;
-            border-radius: 40px;
-            font-size: 13px;
+            padding: 3px 16px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             cursor: pointer;
             transition: 0.2s;
             font-family: inherit;
-            height: 38px;
-            line-height: 1;
+            line-height: 1.4;
+            height: auto;
+            white-space: nowrap;
         }
 
+        .verify-btn {
+            background: #2c6b3a;
+        }
+        .verify-btn:hover {
+            background: #1f5a2e;
+        }
         .print-btn:hover {
             background: #2c3a4b;
         }
-
-        .print-btn:active {
+        .print-btn:active,
+        .verify-btn:active {
             transform: scale(0.96);
         }
 
+        .print-btn:disabled,
+        .verify-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .print-btn-wrapper .hint {
+            width: 100%;
+            text-align: center;
+            font-size: 9px;
+            color: #b0b8c4;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
         /* ============================================================
-                   打印样式 —— A4 签证材料风格
+                   自定义密码弹窗 (使用原生密码输入框)
                    ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-box {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 28px 28px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid #e6e9ed;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+
+        .modal-title .en {
+            font-weight: 400;
+            font-size: 13px;
+            color: #6b7a8a;
+            margin-left: 6px;
+        }
+
+        .modal-sub {
+            font-size: 13px;
+            color: #6b7a8a;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .modal-sub .en {
+            color: #8a96a8;
+            margin-left: 4px;
+        }
+
+        /* ===== 使用原生密码输入框 ===== */
+        .modal-input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e6e9ed;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: "Inter", monospace;
+            background: #fafbfc;
+            color: #1a2332;
+            transition: 0.2s;
+            letter-spacing: 1px;
+            /* 让浏览器显示自己的密码切换按钮 */
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .modal-input-group input:focus {
+            outline: none;
+            border-color: #1a2332;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(26, 35, 50, 0.08);
+        }
+
+        /* 某些浏览器会在密码框右侧显示切换按钮，我们保留 */
+        .modal-input-group input::-webkit-credentials-picker-button {
+            display: none;
+        }
+
+        .modal-error {
+            font-size: 12px;
+            color: #c0392b;
+            min-height: 20px;
+            margin: 4px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .modal-error .en {
+            color: #e07474;
+            margin-left: 4px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+        }
+
+        .modal-actions .btn-cancel {
+            background: #f0f2f5;
+            color: #6b7a8a;
+        }
+
+        .modal-actions .btn-cancel:hover {
+            background: #e6e9ed;
+        }
+
+        .modal-actions .btn-confirm {
+            background: #1a2332;
+            color: #ffffff;
+        }
+
+        .modal-actions .btn-confirm:hover {
+            background: #2c3a4b;
+        }
+
+        .modal-actions .btn-confirm:active {
+            transform: scale(0.97);
+        }
+
+        .modal-actions .btn-confirm:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== 打印样式 ===== */
         @media print {
-            .print-btn-wrapper {
+            .print-btn-wrapper,
+            .modal-overlay {
                 display: none !important;
             }
-
             body {
                 background: #ffffff !important;
                 padding: 0 !important;
@@ -348,7 +637,6 @@
                 display: block !important;
                 min-height: auto !important;
             }
-
             .token-card {
                 max-width: 100% !important;
                 width: 100% !important;
@@ -359,7 +647,6 @@
                 margin: 0 !important;
                 background: #ffffff !important;
             }
-
             .print-a4 {
                 width: 210mm;
                 min-height: 297mm;
@@ -372,78 +659,65 @@
                 justify-content: space-between;
                 font-family: "Inter", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
             }
-
             .print-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
                 border-bottom: 2px solid #1a2332;
                 padding-bottom: 8px;
-                margin-bottom: 14px;
+                margin-bottom: 12px;
             }
-
             .print-header .left .sys-name {
                 font-size: 20px;
                 font-weight: 700;
                 color: #1a2332;
                 letter-spacing: 0.5px;
             }
-
             .print-header .left .sys-name .en {
                 font-weight: 400;
                 font-size: 13px;
                 color: #6b7a8a;
                 margin-left: 6px;
             }
-
             .print-header .left .sys-sub {
                 font-size: 10px;
                 color: #8a96a8;
                 letter-spacing: 2px;
                 margin-top: 1px;
-                text-transform: uppercase;
             }
-
             .print-header .right .badge {
                 background: #1a2332;
                 color: #ffffff;
-                font-size: 11px;
-                font-weight: 600;
-                padding: 3px 16px;
+                font-size: 12px;
+                font-weight: 700;
+                padding: 4px 20px;
                 letter-spacing: 1.5px;
                 border-radius: 40px;
                 display: inline-block;
             }
-
             .print-header .right .token-label {
                 font-size: 9px;
                 color: #8a96a8;
                 letter-spacing: 1px;
                 text-align: right;
                 margin-top: 2px;
-                text-transform: uppercase;
             }
-
             .print-title {
                 text-align: center;
-                margin: 2px 0 14px 0;
+                margin: 2px 0 12px 0;
             }
-
             .print-title .main {
                 font-size: 14px;
                 font-weight: 500;
                 color: #1a2332;
-                letter-spacing: 4px;
-                text-transform: uppercase;
+                letter-spacing: 3px;
             }
-
             .print-title .sub {
                 font-size: 10px;
                 color: #8a96a8;
                 letter-spacing: 2px;
                 margin-top: 1px;
             }
-
             .print-holder {
                 display: flex;
                 align-items: center;
@@ -452,9 +726,8 @@
                 border: 1px solid #e6e9ed;
                 border-radius: 14px;
                 padding: 14px 20px;
-                margin-bottom: 14px;
+                margin-bottom: 12px;
             }
-
             .print-holder .avatar {
                 width: 64px;
                 height: 64px;
@@ -465,97 +738,132 @@
                 border: 2px solid #ffffff;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             }
-
             .print-holder .avatar img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 display: block;
             }
-
             .print-holder .info .name {
                 font-size: 20px;
                 font-weight: 700;
                 color: #1a2332;
             }
-
             .print-holder .info .name .en {
                 font-weight: 400;
                 font-size: 14px;
                 color: #6b7a8a;
                 margin-left: 8px;
             }
-
             .print-holder .info .role {
                 font-size: 12px;
                 color: #1a2332;
                 font-weight: 500;
                 margin-top: 1px;
             }
-
             .print-holder .info .role .en {
                 color: #8a96a8;
                 font-weight: 400;
                 margin-left: 6px;
             }
-
             .print-holder .info .org {
                 font-size: 11px;
                 color: #8a96a8;
                 margin-top: 1px;
             }
-
             .print-holder .info .org .en {
                 color: #aab2be;
                 margin-left: 4px;
             }
-
+            .print-permissions {
+                display: flex;
+                flex-direction: column;
+                gap: 4px 0;
+                background: #f7f9fc;
+                border: 1px solid #e6e9ed;
+                border-radius: 12px;
+                padding: 10px 16px;
+                margin-bottom: 12px;
+            }
+            .print-permissions .item {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: baseline;
+                gap: 2px 8px;
+                min-width: 0;
+                word-break: break-word;
+                padding: 3px 0;
+                border-bottom: 1px solid #e6e9ed;
+            }
+            .print-permissions .item:last-child {
+                border-bottom: none;
+            }
+            .print-permissions .item .label {
+                color: #8a96a8;
+                font-size: 9px;
+                letter-spacing: 0.5px;
+                flex-shrink: 0;
+            }
+            .print-permissions .item .label .en {
+                color: #b0b8c4;
+                font-size: 8px;
+                margin-left: 3px;
+            }
+            .print-permissions .item .value {
+                color: #1a2332;
+                font-weight: 500;
+                font-size: 11px;
+                flex: 1;
+                min-width: 40px;
+            }
+            .print-permissions .item .value .en {
+                color: #6b7a8a;
+                font-weight: 400;
+                font-size: 9px;
+                margin-left: 3px;
+            }
             .print-card-image {
-                border-radius: 14px;
+                border-radius: 10px;
                 overflow: hidden;
                 border: 1px solid #e6e9ed;
-                margin-bottom: 14px;
+                margin: 0 auto 12px 0;
+                width: 80%;
+                max-width: 240px;
                 aspect-ratio: 16 / 10;
                 background: #f7f9fc;
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
-
             .print-card-image img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 display: block;
             }
-
             .print-card-image .placeholder {
+                font-size: 8px;
                 color: #b0b8c4;
-                font-size: 13px;
-                letter-spacing: 2px;
+                text-align: center;
             }
-
             .print-barcodes {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
-                margin-bottom: 14px;
+                gap: 8px;
+                margin-bottom: 12px;
             }
-
             .print-barcode-item {
                 border: 1px solid #e6e9ed;
                 border-radius: 10px;
                 padding: 8px 14px 8px;
                 background: #fafbfc;
             }
-
             .print-barcode-item .row {
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
                 margin-bottom: 4px;
             }
-
             .print-barcode-item .row .label {
                 font-size: 9px;
                 font-weight: 600;
@@ -563,13 +871,11 @@
                 letter-spacing: 1.5px;
                 text-transform: uppercase;
             }
-
             .print-barcode-item .row .label .en {
                 font-weight: 400;
                 color: #aab2be;
                 margin-left: 4px;
             }
-
             .print-barcode-item .row .value {
                 font-size: 12px;
                 font-weight: 500;
@@ -577,7 +883,6 @@
                 font-family: "Inter", monospace;
                 letter-spacing: 0.3px;
             }
-
             .print-barcode-item svg {
                 width: 100%;
                 height: auto;
@@ -586,7 +891,6 @@
                 padding: 4px 6px;
                 display: block;
             }
-
             .print-footer {
                 border-top: 2px solid #1a2332;
                 padding-top: 10px;
@@ -595,43 +899,36 @@
                 justify-content: space-between;
                 align-items: flex-end;
             }
-
             .print-footer .left .org-name {
                 font-size: 12px;
                 font-weight: 600;
                 color: #1a2332;
                 letter-spacing: 0.5px;
             }
-
             .print-footer .left .org-name .en {
                 font-weight: 400;
                 font-size: 10px;
                 color: #8a96a8;
                 margin-left: 6px;
             }
-
             .print-footer .left .meta {
                 font-size: 8px;
                 color: #aab2be;
                 letter-spacing: 1px;
                 margin-top: 1px;
             }
-
             .print-footer .right {
                 text-align: right;
             }
-
             .print-footer .right .issue-date {
                 font-size: 9px;
                 color: #6b7a8a;
                 letter-spacing: 0.3px;
             }
-
             .print-footer .right .issue-date .en {
                 color: #aab2be;
                 margin-left: 4px;
             }
-
             .print-footer .right .token-id {
                 font-size: 9px;
                 color: #8a96a8;
@@ -639,11 +936,15 @@
                 margin-top: 1px;
                 font-family: "Inter", monospace;
             }
-
+            .print-footer .right .security-hint {
+                font-size: 7px;
+                color: #b0b8c4;
+                letter-spacing: 0.5px;
+                margin-top: 2px;
+            }
             .screen-only {
                 display: none !important;
             }
-
             .print-a4 {
                 display: flex !important;
             }
@@ -656,111 +957,169 @@
 </head>
 <body>
 
-    <!-- ====== 屏幕端显示 ====== -->
+    <!-- ============================================================
+    屏幕端显示
+    ============================================================ -->
     <div class="token-card screen-only">
 
         <div class="header">
             <div class="brand">
                 <div class="brand-name">
                     QS Studio
-                    <span class="en">量子跃动工作室</span>
+                    <span class="en"><br>量子跃动工作室</span>
                 </div>
-                <div class="brand-sub">Quantum Spark Studio · 物理令牌</div>
+                <div class="brand-sub">Quantum Spark Studio<br>物理令牌</div>
             </div>
             <div class="badge-root">ROOT</div>
         </div>
 
-        <div class="token-title">
-            <div class="main">物理令牌 · 身份凭证</div>
-            <div class="sub">Physical Token · Identity Credential</div>
+        <div class="system-name">
+            <div class="main">
+                TADS列车数据与查询服务系统
+                <span class="en"><br>TADS Train Data & Query Service</span>
+            </div>
+            <div class="sub">列车数据与查询服务系统<br>Data &amp; Query Service</div>
         </div>
 
         <div class="holder">
             <div class="holder-avatar">
-                <img src="images/portrait.jpg" alt="持卡人头像" onerror="this.style.display='none'">
+                <img src="images/portrait.jpg" alt="持卡人头像" onerror="this.style.display='none'" />
             </div>
             <div class="holder-info">
                 <div class="holder-name">
                     Jason Michael
-                    <span class="en">林晨朗</span>
+                    <span class="en"><br>林晨朗</span>
                 </div>
                 <div class="holder-role">
                     创始人 · CEO
-                    <span class="en">Founder · CEO</span>
+                    <span class="en"><br>Founder · CEO</span>
                 </div>
                 <div class="holder-org">
-                    QS Studio · 量子跃动工作室
+                    QS Studio·量子跃动工作室
                     <span class="en"><br>Quantum Spark Studio</span>
                 </div>
             </div>
         </div>
 
-        <div class="card-front">
-            <img src="images/card-front.jpg" alt="卡面设计" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'placeholder\'>QS Studio · 卡面设计</span>'">
+        <div class="permission-bar">
+            <div class="item">
+                <span class="label">权限等级 <span class="en"><br>Level</span></span>
+                <span class="value">ROOT</span>
+            </div>
+            <div class="item">
+                <span class="label">认证类型 <span class="en"><br>Type</span></span>
+                <span class="value">物理权限令牌 <span class="en"><br>Physical Token</span></span>
+            </div>
+            <div class="item">
+                <span class="label">授权范围 <span class="en"><br>Scope</span></span>
+                <span class="value">服务器管理中心 <span class="en"><br>Server Admin</span></span>
+            </div>
+            <div class="item">
+                <span class="label">有效期 <span class="en"><br>Valid Until</span></span>
+                <span class="value valid">2036.08 <span class="en"><br>(10 Years)</span></span>
+            </div>
+            <div class="item">
+                <span class="label">签发 <span class="en"><br>Issued By</span></span>
+                <span class="value">QS Studio<br>量子跃动工作室</span>
+            </div>
         </div>
 
-        <div class="barcode-section">
+        <!-- 卡面 -->
+        <div class="card-front" id="cardFront">
+            <img id="cardImage" src="images/card-front.jpg" alt="卡面设计" style="display:none;" />
+            <div class="card-front-skeleton" id="cardSkeleton">
+                <div class="skeleton"></div>
+            </div>
+            <span class="placeholder" style="display:none;">QS Studio · 卡面设计</span>
+        </div>
+
+        <!-- 敏感信息区域 -->
+        <div class="barcode-section" id="sensitiveArea">
             <div class="barcode-item">
                 <div class="label-row">
                     <span class="label">
                         Serial 序列号
-                        <span class="en"><br>Serial Number</span>
+                        <span class="en">· Serial Number</span>
                     </span>
-                    <span class="value" id="serialDisplay">TADS-ROOT-2026-08-001-1673</span>
+                    <span class="value" id="serialDisplay">--</span>
                 </div>
-                <svg id="barcodeSerial"></svg>
+                <svg id="barcodeSerial" style="display:none;"></svg>
+                <div class="barcode-skeleton" id="serialSkeleton">
+                    <div class="skeleton"></div>
+                </div>
+                <div class="sensitive-placeholder" id="serialPlaceholder" style="display:none;">需验证</div>
             </div>
+
             <div class="barcode-item">
                 <div class="label-row">
                     <span class="label">
                         UID 唯一标识
-                        <span class="en"><br>Unique Identifier</span>
+                        <span class="en">· Unique Identifier</span>
                     </span>
-                    <span class="value" id="uidDisplay">04:1D:B6:1D:CD:2A:81</span>
+                    <span class="value" id="uidDisplay">--</span>
                 </div>
-                <svg id="barcodeUID"></svg>
+                <svg id="barcodeUID" style="display:none;"></svg>
+                <div class="barcode-skeleton" id="uidSkeleton">
+                    <div class="skeleton"></div>
+                </div>
+                <div class="sensitive-placeholder" id="uidPlaceholder" style="display:none;">需验证</div>
             </div>
         </div>
 
         <div class="footer">
-            <p>
+            <div class="left">
                 量子跃动工作室 · 物理令牌
-                <span class="en"><br>QS Studio · Physical Token</span>
-            </p>
-            <div class="serial-badge">#QS-ROOT-2026</div>
+                <span class="en">QS Studio · Physical Token</span>
+                <br />
+                授权范围：服务器管理中心
+                <span class="en">· Scope: Server Admin</span>
+            </div>
+            <div class="right">
+                <span class="serial-badge">#QS-ROOT-2026-001</span>
+                <br />
+                签发日期 Issue Date
+                <span class="en">2026.08</span>
+                <br />
+                有效期 Valid Until
+                <span class="en">2036.08</span>
+            </div>
         </div>
 
         <div class="print-btn-wrapper">
-            <button class="print-btn" onclick="window.print()">打印 / Print</button>
+            <button class="verify-btn" id="verifyBtn">验证并显示 / Verify &amp; Reveal</button>
+            <button class="print-btn" id="printBtn" disabled>打印 / Print</button>
+            <div class="hint">此令牌为服务器 ROOT 权限凭证，请妥善保管</div>
         </div>
 
     </div>
 
-    <!-- ====== 打印版 A4 内容 ====== -->
+    <!-- ============================================================
+    打印版 A4
+    ============================================================ -->
     <div class="print-a4" id="printA4">
 
         <div class="print-header">
             <div class="left">
                 <div class="sys-name">
-                    TADS 列车到发数据中心
-                    <span class="en">Train Arrival & Departure Schedule</span>
+                    TADS列车数据与查询服务系统
+                    <span class="en">Train Arrival &amp; Departure Schedule</span>
                 </div>
-                <div class="sys-sub">Quantum Spark Studio · 物理令牌</div>
+                <div class="sys-sub">Quantum Spark Studio · 物理令牌 · Physical Token</div>
             </div>
             <div class="right">
                 <div class="badge">ROOT</div>
-                <div class="token-label">物理令牌 · Physical Token</div>
+                <div class="token-label">权限等级 · Permission Level</div>
             </div>
         </div>
 
         <div class="print-title">
-            <div class="main">身份凭证 · 物理令牌</div>
-            <div class="sub">Identity Credential · Physical Token</div>
+            <div class="main">身份凭证 · 物理权限令牌</div>
+            <div class="sub">Identity Credential · Physical Permission Token</div>
         </div>
 
         <div class="print-holder">
             <div class="avatar">
-                <img src="images/portrait.jpg" alt="持卡人头像" onerror="this.style.display='none'">
+                <img src="images/portrait.jpg" alt="持卡人头像" onerror="this.style.display='none'" />
             </div>
             <div class="info">
                 <div class="name">
@@ -778,20 +1137,51 @@
             </div>
         </div>
 
-        <div class="print-card-image">
-            <img src="images/card-front.jpg" alt="卡面设计" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'placeholder\'>QS Studio · 卡面设计</span>'">
+        <div class="print-permissions">
+            <div class="item">
+                <span class="label">权限等级 <span class="en">Level</span></span>
+                <span class="value">ROOT</span>
+            </div>
+            <div class="item">
+                <span class="label">认证类型 <span class="en">Type</span></span>
+                <span class="value">物理令牌 <span class="en">Physical</span></span>
+            </div>
+            <div class="item">
+                <span class="label">授权范围 <span class="en">Scope</span></span>
+                <span class="value">服务器管理 <span class="en">Server Admin</span></span>
+            </div>
+            <div class="item">
+                <span class="label">有效期 <span class="en">Valid Until</span></span>
+                <span class="value">2036.08 <span class="en">(10 Years)</span></span>
+            </div>
+            <div class="item">
+                <span class="label">签发机构 <span class="en">Issued By</span></span>
+                <span class="value">QS Studio · 量子跃动工作室</span>
+            </div>
         </div>
 
-        <div class="print-barcodes">
+        <div class="print-card-image" id="printCardFront">
+            <img id="printCardImage" src="images/card-front.jpg" alt="卡面设计" style="display:none;" />
+            <div class="card-front-skeleton" id="printCardSkeleton">
+                <div class="skeleton"></div>
+            </div>
+            <span class="placeholder" style="display:none;">卡面</span>
+        </div>
+
+        <div class="print-barcodes" id="printSensitiveArea">
             <div class="print-barcode-item">
                 <div class="row">
                     <span class="label">
                         Serial 序列号
                         <span class="en">· Serial Number</span>
                     </span>
-                    <span class="value" id="printSerial">TADS-ROOT-2026-08-001-1673</span>
+                    <span class="value" id="printSerial">--</span>
                 </div>
-                <svg id="printBarcodeSerial"></svg>
+                <svg id="printBarcodeSerial" style="display:none;"></svg>
+                <div class="barcode-skeleton" id="printSerialSkeleton">
+                    <div class="skeleton"></div>
+                </div>
+                <div class="sensitive-placeholder" id="printSerialPlaceholder" style="display:none; font-size:8px; margin-top:4px;">需验证</div>
             </div>
             <div class="print-barcode-item">
                 <div class="row">
@@ -799,9 +1189,13 @@
                         UID 唯一标识
                         <span class="en">· Unique Identifier</span>
                     </span>
-                    <span class="value" id="printUid">04:1D:B6:1D:CD:2A:81</span>
+                    <span class="value" id="printUid">--</span>
                 </div>
-                <svg id="printBarcodeUID"></svg>
+                <svg id="printBarcodeUID" style="display:none;"></svg>
+                <div class="barcode-skeleton" id="printUidSkeleton">
+                    <div class="skeleton"></div>
+                </div>
+                <div class="sensitive-placeholder" id="printUidPlaceholder" style="display:none; font-size:8px; margin-top:4px;">需验证</div>
             </div>
         </div>
 
@@ -816,74 +1210,377 @@
             <div class="right">
                 <div class="issue-date">
                     签发日期 Issue Date
-                    <span class="en">2026-08-26</span>
+                    <span class="en">2026.08</span>
                 </div>
                 <div class="token-id">#QS-ROOT-2026-001</div>
+                <div class="security-hint">此令牌为 ROOT 权限凭证 · 请妥善保管</div>
             </div>
         </div>
 
     </div>
 
+    <!-- ============================================================
+    自定义密码弹窗 — 使用原生密码输入框
+    ============================================================ -->
+    <div class="modal-overlay" id="passwordModal">
+        <div class="modal-box">
+            <div class="modal-title">
+                输入密码
+                <span class="en">Enter Password</span>
+            </div>
+            <div class="modal-sub">
+                请输入访问令牌的密码
+                <span class="en">· Please enter the token password</span>
+            </div>
+
+            <div class="modal-input-group">
+                <input type="password" id="modalPasswordInput" placeholder="请输入密码 / Enter password" autofocus autocomplete="current-password" />
+            </div>
+
+            <div class="modal-error" id="modalError"></div>
+
+            <div class="modal-actions">
+                <button class="btn-cancel" id="modalCancelBtn">取消 / Cancel</button>
+                <button class="btn-confirm" id="modalConfirmBtn">确认 / Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            const serial = 'TADS-ROOT-2026-08-001-1673';
-            const uid = '04:1D:B6:1D:CD:2A:81';
+            // ============================================================
+            // 🔐 加密参数
+            // ============================================================
+            const SALT = new TextEncoder().encode('QS_STUDIO_SALT_2026_FIXED');
+            const IV = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+            const ITERATIONS = 100000;
 
-            document.getElementById('serialDisplay').textContent = serial;
-            document.getElementById('uidDisplay').textContent = uid;
+            // ============================================================
+            // 📦 密文 — 请使用 config.html 生成的密文替换下方两行
+            // ============================================================
+            const SERIAL_CIPHER = '2D9kyKCKcQNeLVClUP0gE/HE+vbvXMODUCC/V3VipuAaAAMikHs792S3c5Yc';
+            const UID_CIPHER = 'uVhzraX0YBg2U1vLPosqE4bT8v94ExilsbxA1ayJuG8dg2jS';
 
-            try {
-                JsBarcode('#barcodeSerial', serial, {
-                    format: 'CODE128',
-                    width: 1.6,
-                    height: 36,
-                    displayValue: false,
-                    background: '#ffffff',
-                    lineColor: '#1a2332',
-                    margin: 4,
+            // ============================================================
+            // 🔑 解密函数
+            // ============================================================
+            async function deriveKey(password) {
+                const enc = new TextEncoder();
+                const keyMaterial = await crypto.subtle.importKey(
+                    'raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']
+                );
+                return crypto.subtle.deriveKey(
+                    { name: 'PBKDF2', salt: SALT, iterations: ITERATIONS, hash: 'SHA-256' },
+                    keyMaterial,
+                    { name: 'AES-GCM', length: 256 },
+                    false,
+                    ['decrypt']
+                );
+            }
+
+            async function decryptData(key, cipherBase64) {
+                try {
+                    const cipherBuffer = Uint8Array.from(atob(cipherBase64), c => c.charCodeAt(0));
+                    const decrypted = await crypto.subtle.decrypt(
+                        { name: 'AES-GCM', iv: IV },
+                        key,
+                        cipherBuffer
+                    );
+                    return new TextDecoder().decode(decrypted);
+                } catch (e) {
+                    return null;
+                }
+            }
+
+            // ============================================================
+            // DOM 引用
+            // ============================================================
+            const cardImage = document.getElementById('cardImage');
+            const cardSkeleton = document.getElementById('cardSkeleton');
+            const serialDisplay = document.getElementById('serialDisplay');
+            const uidDisplay = document.getElementById('uidDisplay');
+            const barcodeSerial = document.getElementById('barcodeSerial');
+            const barcodeUID = document.getElementById('barcodeUID');
+            const serialSkeleton = document.getElementById('serialSkeleton');
+            const uidSkeleton = document.getElementById('uidSkeleton');
+            const serialPlaceholder = document.getElementById('serialPlaceholder');
+            const uidPlaceholder = document.getElementById('uidPlaceholder');
+
+            const printCardImage = document.getElementById('printCardImage');
+            const printCardSkeleton = document.getElementById('printCardSkeleton');
+            const printSerial = document.getElementById('printSerial');
+            const printUid = document.getElementById('printUid');
+            const printBarcodeSerial = document.getElementById('printBarcodeSerial');
+            const printBarcodeUID = document.getElementById('printBarcodeUID');
+            const printSerialSkeleton = document.getElementById('printSerialSkeleton');
+            const printUidSkeleton = document.getElementById('printUidSkeleton');
+            const printSerialPlaceholder = document.getElementById('printSerialPlaceholder');
+            const printUidPlaceholder = document.getElementById('printUidPlaceholder');
+
+            const verifyBtn = document.getElementById('verifyBtn');
+            const printBtn = document.getElementById('printBtn');
+
+            // 弹窗
+            const modal = document.getElementById('passwordModal');
+            const modalInput = document.getElementById('modalPasswordInput');
+            const modalError = document.getElementById('modalError');
+            const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+            const modalCancelBtn = document.getElementById('modalCancelBtn');
+
+            let isVerified = false;
+            let decryptedSerial = '';
+            let decryptedUID = '';
+            let pendingResolve = null;
+
+            // ============================================================
+            // 弹窗控制
+            // ============================================================
+            function showModal() {
+                return new Promise((resolve) => {
+                    modal.classList.add('active');
+                    modalInput.value = '';
+                    modalError.textContent = '';
+                    modalInput.type = 'password';
+                    setTimeout(() => modalInput.focus(), 50);
+                    pendingResolve = resolve;
                 });
-            } catch (e) { console.warn('Serial 条形码生成失败:', e); }
+            }
 
-            try {
-                JsBarcode('#barcodeUID', uid, {
-                    format: 'CODE128',
-                    width: 1.6,
-                    height: 36,
-                    displayValue: false,
-                    background: '#ffffff',
-                    lineColor: '#1a2332',
-                    margin: 4,
-                });
-            } catch (e) { console.warn('UID 条形码生成失败:', e); }
+            function hideModal() {
+                modal.classList.remove('active');
+            }
 
-            document.getElementById('printSerial').textContent = serial;
-            document.getElementById('printUid').textContent = uid;
+            // ============================================================
+            // 弹窗事件
+            // ============================================================
+            modalConfirmBtn.addEventListener('click', function() {
+                const password = modalInput.value.trim();
+                if (password.length === 0) {
+                    modalError.textContent = '⚠️ 请输入密码 / Please enter password';
+                    return;
+                }
+                if (pendingResolve) {
+                    pendingResolve(password);
+                    pendingResolve = null;
+                }
+                hideModal();
+            });
 
-            try {
-                JsBarcode('#printBarcodeSerial', serial, {
-                    format: 'CODE128',
-                    width: 1.8,
-                    height: 40,
-                    displayValue: false,
-                    background: '#ffffff',
-                    lineColor: '#1a2332',
-                    margin: 6,
-                });
-            } catch (e) { console.warn('打印版 Serial 条形码生成失败:', e); }
+            modalCancelBtn.addEventListener('click', function() {
+                if (pendingResolve) {
+                    pendingResolve(null);
+                    pendingResolve = null;
+                }
+                hideModal();
+            });
 
-            try {
-                JsBarcode('#printBarcodeUID', uid, {
-                    format: 'CODE128',
-                    width: 1.8,
-                    height: 40,
-                    displayValue: false,
-                    background: '#ffffff',
-                    lineColor: '#1a2332',
-                    margin: 6,
-                });
-            } catch (e) { console.warn('打印版 UID 条形码生成失败:', e); }
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    if (pendingResolve) {
+                        pendingResolve(null);
+                        pendingResolve = null;
+                    }
+                    hideModal();
+                }
+            });
 
+            modalInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    modalConfirmBtn.click();
+                }
+                if (e.key === 'Escape') {
+                    modalCancelBtn.click();
+                }
+            });
+
+            modalInput.addEventListener('input', function() {
+                modalError.textContent = '';
+            });
+
+            // ============================================================
+            // 验证并解密
+            // ============================================================
+            async function verifyAndDecrypt(password) {
+                try {
+                    const key = await deriveKey(password);
+                    const serial = await decryptData(key, SERIAL_CIPHER);
+                    if (serial === null) return false;
+                    const uid = await decryptData(key, UID_CIPHER);
+                    if (uid === null) return false;
+                    decryptedSerial = serial;
+                    decryptedUID = uid;
+                    return true;
+                } catch (e) {
+                    console.error('解密失败:', e);
+                    return false;
+                }
+            }
+
+            // ============================================================
+            // ⭐ 核心修复：显示解密后的数据（确保所有元素都被正确更新）
+            // ============================================================
+            function revealData() {
+                console.log('开始显示解密数据...');
+
+                // ---- 屏幕端 ----
+                // 卡面
+                cardImage.style.display = 'block';
+                cardSkeleton.style.display = 'none';
+
+                // 序列号
+                serialDisplay.textContent = decryptedSerial;
+                serialSkeleton.style.display = 'none';
+                barcodeSerial.style.display = 'block';
+                serialPlaceholder.style.display = 'none';
+
+                // UID
+                uidDisplay.textContent = decryptedUID;
+                uidSkeleton.style.display = 'none';
+                barcodeUID.style.display = 'block';
+                uidPlaceholder.style.display = 'none';
+
+                // ---- 打印版 ----
+                printCardImage.style.display = 'block';
+                printCardSkeleton.style.display = 'none';
+
+                printSerial.textContent = decryptedSerial;
+                printSerialSkeleton.style.display = 'none';
+                printBarcodeSerial.style.display = 'block';
+                printSerialPlaceholder.style.display = 'none';
+
+                printUid.textContent = decryptedUID;
+                printUidSkeleton.style.display = 'none';
+                printBarcodeUID.style.display = 'block';
+                printUidPlaceholder.style.display = 'none';
+
+                // ---- 生成条形码 ----
+                try {
+                    JsBarcode('#barcodeSerial', decryptedSerial, {
+                        format: 'CODE128',
+                        width: 1.4,
+                        height: 32,
+                        displayValue: false,
+                        background: '#ffffff',
+                        lineColor: '#1a2332',
+                        margin: 4,
+                    });
+                    JsBarcode('#barcodeUID', decryptedUID, {
+                        format: 'CODE128',
+                        width: 1.4,
+                        height: 32,
+                        displayValue: false,
+                        background: '#ffffff',
+                        lineColor: '#1a2332',
+                        margin: 4,
+                    });
+                    JsBarcode('#printBarcodeSerial', decryptedSerial, {
+                        format: 'CODE128',
+                        width: 1.6,
+                        height: 38,
+                        displayValue: false,
+                        background: '#ffffff',
+                        lineColor: '#1a2332',
+                        margin: 6,
+                    });
+                    JsBarcode('#printBarcodeUID', decryptedUID, {
+                        format: 'CODE128',
+                        width: 1.6,
+                        height: 38,
+                        displayValue: false,
+                        background: '#ffffff',
+                        lineColor: '#1a2332',
+                        margin: 6,
+                    });
+                } catch (e) {
+                    console.warn('条形码生成失败:', e);
+                }
+
+                isVerified = true;
+                verifyBtn.textContent = '已验证 / Verified';
+                verifyBtn.disabled = true;
+                printBtn.disabled = false;
+
+                console.log('✅ 解密数据显示完成！');
+            }
+
+            // ============================================================
+            // 验证按钮
+            // ============================================================
+            verifyBtn.addEventListener('click', async function() {
+                if (isVerified) return;
+                const password = await showModal();
+                if (password === null) return; // 用户取消
+                const ok = await verifyAndDecrypt(password);
+                if (ok) {
+                    revealData();
+                } else {
+                    modalError.textContent = '❌ 密码错误 / Incorrect password';
+                    modal.classList.add('active');
+                    modalInput.focus();
+                    modalInput.select();
+                }
+            });
+
+            // ============================================================
+            // 打印按钮
+            // ============================================================
+            printBtn.addEventListener('click', async function() {
+                if (isVerified) {
+                    window.print();
+                    return;
+                }
+                const password = await showModal();
+                if (password === null) return;
+                const ok = await verifyAndDecrypt(password);
+                if (ok) {
+                    revealData();
+                    setTimeout(() => {
+                        window.print();
+                    }, 300);
+                } else {
+                    modalError.textContent = '❌ 密码错误 / Incorrect password';
+                    modal.classList.add('active');
+                    modalInput.focus();
+                    modalInput.select();
+                }
+            });
+
+            // ============================================================
+            // 初始状态
+            // ============================================================
+            cardImage.style.display = 'none';
+            cardSkeleton.style.display = 'block';
+            serialSkeleton.style.display = 'block';
+            uidSkeleton.style.display = 'block';
+            barcodeSerial.style.display = 'none';
+            barcodeUID.style.display = 'none';
+            serialPlaceholder.style.display = 'none';
+            uidPlaceholder.style.display = 'none';
+
+            printCardImage.style.display = 'none';
+            printCardSkeleton.style.display = 'block';
+            printSerialSkeleton.style.display = 'block';
+            printUidSkeleton.style.display = 'block';
+            printBarcodeSerial.style.display = 'none';
+            printBarcodeUID.style.display = 'none';
+            printSerialPlaceholder.style.display = 'none';
+            printUidPlaceholder.style.display = 'none';
+
+            printBtn.disabled = true;
+
+            // 检查密文是否已替换
+            if (SERIAL_CIPHER === 'Paste your SERIAL_CIPHER here' || UID_CIPHER === 'Paste your UID_CIPHER here') {
+                console.warn('⚠️ 请先使用 config.html 生成密文，并替换 index.html 中的 SERIAL_CIPHER 和 UID_CIPHER');
+                const hint = document.createElement('div');
+                hint.style.cssText =
+                    'background:#fde8e8;color:#c0392b;padding:10px 16px;border-radius:10px;font-size:12px;margin-bottom:12px;border:1px solid #f5c8c8;text-align:center;';
+                hint.innerHTML =
+                    '⚠️ 请先使用 <strong>config.html</strong> 生成密文，并替换 <strong>index.html</strong> 中的 SERIAL_CIPHER 和 UID_CIPHER';
+                document.querySelector('.token-card').insertBefore(hint, document.querySelector('.card-front'));
+            } else {
+                console.log('✅ 密文已配置，等待用户验证');
+            }
         });
     </script>
 
