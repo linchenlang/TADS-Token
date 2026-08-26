@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QS Studio · ROOT 物理令牌</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b1119;
+            font-family: "Inter", -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+
+        .token-card {
+            max-width: 440px;
+            width: 100%;
+            background: #141c28;
+            border-radius: 40px;
+            padding: 32px 28px 28px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.2s;
+        }
+
+        /* === 顶部 === */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .brand-name .en {
+            font-weight: 300;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+            margin-left: 6px;
+        }
+
+        .brand-sub {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 2px;
+            margin-top: 2px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .badge-root {
+            background: #d4a843;
+            color: #0b1119;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 40px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* === 令牌标题 === */
+        .token-title {
+            text-align: center;
+            margin: 4px 0 22px 0;
+        }
+
+        .token-title .main {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .token-title .sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.15);
+            letter-spacing: 2px;
+            margin-top: 2px;
+            font-weight: 300;
+        }
+
+        /* === 持卡人信息 === */
+        .holder {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .holder-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #1e2a36;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .holder-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .holder-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .holder-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .holder-name .en {
+            font-weight: 300;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .holder-role {
+            font-size: 12px;
+            color: #d4a843;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .holder-role .en {
+            color: rgba(212, 168, 67, 0.4);
+            font-weight: 300;
+            margin-left: 6px;
+        }
+
+        .holder-org {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 0.5px;
+            margin-top: 1px;
+        }
+
+        .holder-org .en {
+            color: rgba(255, 255, 255, 0.12);
+            margin-left: 4px;
+        }
+
+        /* === 卡面 === */
+        .card-front {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 22px;
+            background: #1a2430;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            aspect-ratio: 16 / 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-front .placeholder {
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* === 条形码区 === */
+        .barcode-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 6px 0 4px;
+        }
+
+        .barcode-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 14px 16px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .barcode-item .label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .barcode-item .label {
+            font-size: 10px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .barcode-item .label .en {
+            color: rgba(255, 255, 255, 0.12);
+            font-weight: 300;
+            margin-left: 4px;
+        }
+
+        .barcode-item .value {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: "Inter", monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .barcode-item svg {
+            width: 100%;
+            height: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 6px 8px;
+            display: block;
+        }
+
+        /* === 底部 === */
+        .footer {
+            text-align: center;
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer p {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.12);
+            letter-spacing: 1.5px;
+            font-weight: 300;
+        }
+
+        .footer p .en {
+            color: rgba(255, 255, 255, 0.06);
+            margin-left: 4px;
+        }
+
+        .footer .serial-badge {
+            display: inline-block;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.08);
+            letter-spacing: 2px;
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 400px) {
+            .token-card {
+                padding: 24px 16px 20px;
+            }
+
+            .holder {
+                padding: 12px 14px;
+                gap: 14px;
+            }
+
+            .holder-avatar {
+                width: 52px;
+                height: 52px;
+            }
+
+            .holder-name {
+                font-size: 17px;
+            }
+
+            .barcode-item {
+                padding: 12px 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="token-card">
+
+        <!-- 头部 -->
+        <div class="header">
+            <div class="brand">
+                <div class="brand-name">
+                    QS Studio
+                    <span class="en">量子跃动工作室</span>
+                </div>
+                <div class="brand-sub">Quantum Spark Studio · 物理令牌</div>
+            </div>
+            <div class="badge-root">ROOT</div>
+        </div>
+
+        <!-- 令牌标题 -->
+        <div class="token-title">
+            <div class="main">物理令牌 · 身份凭证</div>
+            <div class="sub">Physical Token · Identity Credential</div>
+        </div>
+
+        <!-- 持卡人信息 + 头像 -->
+        <div class="holder">
+            <div class="holder-avatar">
+                <img src="images/portrait.jpg" alt="持卡人头像">
+            </div>
+            <div class="holder-info">
+                <div class="holder-name">
+                    Jason Michael
+                    <span class="en">林晨朗</span>
+                </div>
+                <div class="holder-role">
+                    创始人 · CEO
+                    <span class="en">Founder · CEO</span>
+                </div>
+                <div class="holder-org">
+                    QS Studio · 量子跃动工作室
+                    <span class="en"><br>Quantum Spark Studio</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡面 -->
+        <div class="card-front">
+            <img src="images/card-front.jpg" alt="卡面设计" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'placeholder\'>卡面图片 · Card Design</span>'">
+        </div>
+
+        <!-- 条形码区 -->
+        <div class="barcode-section">
+
+            <!-- Serial -->
+            <div class="barcode-item">
+                <div class="label-row">
+                    <span class="label">
+                        Serial 序列号
+                        <span class="en"><br>Serial Number</span>
+                    </span>
+                    <span class="value" id="serialDisplay">TADS-ROOT-2026-08-001-1673</span>
+                </div>
+                <svg id="barcodeSerial"></svg>
+            </div>
+
+            <!-- UID -->
+            <div class="barcode-item">
+                <div class="label-row">
+                    <span class="label">
+                        UID 唯一标识
+                        <span class="en"><br>Unique Identifier</span>
+                    </span>
+                    <span class="value" id="uidDisplay">04:9B:7A:2E:11:F3:88</span>
+                </div>
+                <svg id="barcodeUID"></svg>
+            </div>
+
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer">
+            <p>
+                量子跃动工作室 · 物理令牌
+                <span class="en"><br>QS Studio · Physical Token</span>
+            </p>
+            <div class="serial-badge">#QS-ROOT-2026</div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 数据区
+            const serial = 'TADS-ROOT-2026-08-001-1673';
+            const uid = '04:1D:B6:1D:CD:2A:81';
+
+            // 显示文本
+            document.getElementById('serialDisplay').textContent = serial;
+            document.getElementById('uidDisplay').textContent = uid;
+
+            // 生成条形码：Serial
+            try {
+                JsBarcode('#barcodeSerial', serial, {
+                    format: 'CODE128',
+                    width: 1.8,
+                    height: 50,
+                    displayValue: false,
+                    background: '#ffffff',
+                    lineColor: '#0b1119',
+                    margin: 4,
+                    font: 'Inter, monospace',
+                    fontSize: 14,
+                });
+            } catch (e) {
+                console.warn('Serial 条形码生成失败:', e);
+            }
+
+            // 生成条形码：UID
+            try {
+                JsBarcode('#barcodeUID', uid, {
+                    format: 'CODE128',
+                    width: 1.8,
+                    height: 50,
+                    displayValue: false,
+                    background: '#ffffff',
+                    lineColor: '#0b1119',
+                    margin: 4,
+                    font: 'Inter, monospace',
+                    fontSize: 14,
+                });
+            } catch (e) {
+                console.warn('UID 条形码生成失败:', e);
+            }
+
+        });
+    </script>
+
+</body>
+</html>
